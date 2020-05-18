@@ -5,6 +5,8 @@ image:
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - init: |
+      # Clear the terminal from output above
+      clear
       printf '\033[31m\033[1mWARNING:\033[0m %s\n' "This is affected by a bug https://github.com/gitpod-io/gitpod/issues/1528, please ignore the blank preview and open the generated website in a browser"
       printf '\n%s\n' "Press any key to continue.."
       read -r something
