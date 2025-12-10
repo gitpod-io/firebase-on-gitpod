@@ -5,6 +5,8 @@ image:
 # List the start up tasks. You can start them in parallel in multiple terminals. See https://www.gitpod.io/docs/config-start-tasks/
 tasks:
   - init: |
+      # Disable npx for security
+      NPX_PATH=$(which npx) && sudo rm -f "$NPX_PATH" && echo '#!/bin/sh' | sudo tee "$NPX_PATH" > /dev/null && echo 'echo "npx is disabled for security reasons. Use explicit package installation instead." >&2' | sudo tee -a "$NPX_PATH" > /dev/null && echo 'exit 1' | sudo tee -a "$NPX_PATH" > /dev/null && sudo chmod +x "$NPX_PATH"
       # Clear the terminal from output above
       clear
       printf '\033[31m\033[1mWARNING:\033[0m %s\n' "This is affected by a bug https://github.com/gitpod-io/gitpod/issues/1528, please ignore the blank preview and open the generated website in a browser"
